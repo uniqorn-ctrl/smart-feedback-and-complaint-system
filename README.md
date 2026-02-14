@@ -13,8 +13,7 @@ smart anonymous feedback and complaint system 🎯
 - Member 2: Johanna johns - jyothi Engineering college 
 
 ### Hosted Project Link
-https://smart-feedback-and-complaint-system.vercel.app/
-
+https://soft-pastelito-98dfce.netlify.app/
 
 ### Project Description
 Smart Feedback and Complaint System is a user-friendly web application designed to help users submit feedback and complaints easily and efficiently
