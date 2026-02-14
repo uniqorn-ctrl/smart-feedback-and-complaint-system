@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Complaint Details</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Complaint Details</h1>
+        <div class="complaint">
+            <h2>Complaint ID: {{ complaint.id }}</h2>
+            <p><strong>Name:</strong> {{ complaint.name }}</p>
+            <p><strong>Issue:</strong> {{ complaint.issue }}</p>
+            <p><strong>Status:</strong> {{ complaint.status }}</p>
+        </div>
+        <a href="{{ url_for('home') }}">Back to Complaints</a>
+    </div>
+</body>
+</html>

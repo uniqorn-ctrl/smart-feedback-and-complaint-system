@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Complaint / Suggestion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Submit Complaint / Suggestion</h2>
+        <form id="complaintForm">
+
+            <!-- Student Name (Optional) -->
+            <input type="text" id="studentName" placeholder="Enter Your Name or type 'Anonymous'">
+
+            <!-- Problem Type Dropdown -->
+            <select id="complaintType" required>
+                <option value="">--Select Problem Type--</option>
+                <option value="Sanitation">Sanitation</option>
+                <option value="Academics">Academics</option>
+                <option value="Harassment">Harassment</option>
+                <option value="Others">Others</option>
+            </select>
+
+            <!-- Description -->
+            <textarea id="complaintDesc" placeholder="Describe your complaint or suggestion..." required></textarea>
+
+            <!-- Optional File Upload -->
+            <input type="file" id="proofFile">
+
+            <!-- Submit Button -->
+            <button type="submit">Submit</button>
+        </form>
+        <a href="student_dashboard.html" class="btn">Back to Dashboard</a>
+    </div>
+
+    <script>
+        // ----- Submit Complaint -----
+        const complaintForm = document.getElementById('complaintForm');
+        if(complaintForm){
+            complaintForm.addEventListener('submit', function(e){
+                e.preventDefault();
+
+                // Load existing complaints from localStorage or start a new array
+                let complaints = JSON.parse(localStorage.getItem('complaints') || "[]");
+
+                // Generate unique Track ID
+                const id = 'C' + new Date().getTime();
+
+                // Get student name, default to Anonymous if empty
+                const nameInput = document.getElementById('studentName').value.trim();
+                const name = nameInput === "" ? "Anonymous" : nameInput;
+
+                // Get complaint type from dropdown
+                const type = document.getElementById('complaintType').value;
+
+                // Get description
+                const desc = document.getElementById('complaintDesc').value;
+
+                // Save complaint to localStorage
+                complaints.push({id, name, type, desc, status: "Pending"});
+                localStorage.setItem('complaints', JSON.stringify(complaints));
+
+                alert(`Complaint/Suggestion submitted successfully!\nYour Track ID: ${id}`);
+                complaintForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>

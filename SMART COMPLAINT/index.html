@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College Suggestion & Complaint Portal</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(120deg, #f0f4f8, #d9e2ec);
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 400px;
+        margin: 60px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    h2, h3 {
+        text-align: center;
+        color: #334e68;
+    }
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0 16px;
+        border: 1px solid #bcccdc;
+        border-radius: 6px;
+        font-size: 16px;
+    }
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: #486581;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s;
+    }
+    button:hover {
+        background-color: #334e68;
+    }
+    .link-btn {
+        background: none;
+        color: #486581;
+        font-size: 14px;
+        padding: 0;
+        width: auto;
+        margin-top: 8px;
+    }
+</style>
+</head>
+<body>
+
+<!-- Login Container -->
+<div class="container" id="loginContainer">
+    <h2>Login</h2>
+    <select id="loginType">
+        <option value="user">Student Login</option>
+        <option value="admin">Admin Login</option>
+    </select>
+    <input type="text" id="username" placeholder="Enter Username">
+    <input type="password" id="password" placeholder="Enter Password">
+    <button onclick="login()">Login</button>
+    <button class="link-btn" onclick="showTracker()">Track Your Issue</button>
+</div>
+
+<!-- User Dashboard -->
+<div class="container" id="userDashboard" style="display:none;">
+    <h2>Submit a Complaint / Suggestion</h2>
+    <label for="issue">Select Problem:</label>
+    <select id="issue">
+        <option value="attendance">Attendance Issue</option>
+        <option value="infrastructure">Infrastructure Issue</option>
+        <option value="faculty">Faculty Related</option>
+        <option value="hostel">Hostel / Mess</option>
+        <option value="other">Other</option>
+    </select>
+    <textarea id="description" placeholder="Describe your issue..." rows="4"></textarea>
+    <input type="file" id="proof">
+    <button onclick="submitIssue()">Submit</button>
+
+    <h3>Track Your Issues</h3>
+    <div id="issueTracker"></div>
+    <button onclick="logout('user')">Logout</button>
+</div>
+
+<!-- Tracker Interface -->
+<div class="container" id="trackerInterface" style="display:none;">
+    <h2>Track Your Issue</h2>
+    <input type="number" id="trackerId" placeholder="Enter Tracker ID">
+    <button onclick="trackIssue()">Check Status</button>
+    <div id="trackerResult" style="margin-top: 16px; color:#334e68;"></div>
+    <button class="link-btn" onclick="backToLogin()">Back</button>
+</div>
+
+<!-- Admin Dashboard -->
+<div class="container" id="adminDashboard" style="display:none;">
+    <h2>Admin Dashboard</h2>
+    <h3>Pending Issues</h3>
+    <div id="adminTracker"></div>
+    <button onclick="logout('admin')">Logout</button>
+</div>
+
+<script>
+    const adminPassword = "admin123"; // unique admin password
+    let issues = [];
+    let issueID = 1;
+
+    function login() {
+        const type = document.getElementById('loginType').value;
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if(type === "admin") {
+            if(password === adminPassword) {
+                document.getElementById('loginContainer').style.display = "none";
+                document.getElementById('adminDashboard').style.display = "block";
+                renderAdminIssues();
+            } else {
+                alert("Incorrect Admin Password");
+            }
+        } else {
+            if(username) {
+                document.getElementById('loginContainer').style.display = "none";
+                document.getElementById('userDashboard').style.display = "block";
+            } else {
+                alert("Enter your username");
+            }
+        }
+    }
+
+    function submitIssue() {
+        const issueType = document.getElementById('issue').value;
+        const description = document.getElementById('description').value;
+        const proof = document.getElementById('proof').files[0] ? document.getElementById('proof').files[0].name : "No file";
+
+        if(!description) {
+            alert("Please provide a description.");
+            return;
+        }
+
+        const newIssue = {
+            id: issueID++,
+            issueType,
+            description,
+            proof,
+            status: "Submitted"
+        };
+        issues.push(newIssue);
+        renderUserIssues();
+        renderAdminIssues();
+        alert("Issue submitted successfully!");
+        document.getElementById('description').value = "";
+        document.getElementById('proof').value = "";
+    }
+
+    function renderUserIssues() {
+        const tracker = document.getElementById('issueTracker');
+        tracker.innerHTML = "";
+        issues.forEach(issue => {
+            tracker.innerHTML += `<p><strong>ID:</strong> ${issue.id} | <strong>Type:</strong> ${issue.issueType} | <strong>Status:</strong> ${issue.status}</p>`;
+        });
+    }
+
+    function renderAdminIssues() {
+        const adminDiv = document.getElementById('adminTracker');
+        adminDiv.innerHTML = "";
+        issues.forEach((issue, index) => {
+            adminDiv.innerHTML += `
+            <p>
+            <strong>ID:</strong> ${issue.id} | <strong>Type:</strong> ${issue.issueType} | <strong>Description:</strong> ${issue.description} | <strong>Status:</strong> 
+            <select onchange="updateStatus(${index}, this.value)">
+                <option value="Submitted" ${issue.status === "Submitted" ? "selected":""}>Submitted</option>
+                <option value="In Progress" ${issue.status === "In Progress" ? "selected":""}>In Progress</option>
+                <option value="Resolved" ${issue.status === "Resolved" ? "selected":""}>Resolved</option>
+            </select>
+            </p>`;
+        });
+    }
+
+    function updateStatus(index, status) {
+        issues[index].status = status;
+        renderUserIssues();
+    }
+
+    function logout(type) {
+        if(type === 'user') {
+            document.getElementById('userDashboard').style.display = "none";
+        } else {
+            document.getElementById('adminDashboard').style.display = "none";
+        }
+        document.getElementById('loginContainer').style.display = "block";
+    }
+
+    function showTracker() {
+        document.getElementById('loginContainer').style.display = "none";
+        document.getElementById('trackerInterface').style.display = "block";
+        document.getElementById('trackerResult').innerHTML = "";
+        document.getElementById('trackerId').value = "";
+    }
+
+    function backToLogin() {
+        document.getElementById('trackerInterface').style.display = "none";
+        document.getElementById('loginContainer').style.display = "block";
+    }
+
+    function trackIssue() {
+        const id = parseInt(document.getElementById('trackerId').value);
+        const resultDiv = document.getElementById('trackerResult');
+        const issue = issues.find(i => i.id === id);
+
+        if(issue) {
+            resultDiv.innerHTML = `
+                <p><strong>ID:</strong> ${issue.id}</p>
+                <p><strong>Type:</strong> ${issue.issueType}</p>
+                <p><strong>Description:</strong> ${issue.description}</p>
+                <p><strong>Proof:</strong> ${issue.proof}</p>
+                <p><strong>Status:</strong> ${issue.status}</p>
+            `;
+        } else {
+            resultDiv.innerHTML = `<p style="color:red;">No issue found with this Tracker ID.</p>`;
+        }
+    }
+</script>
+
+</body>
+</html>
