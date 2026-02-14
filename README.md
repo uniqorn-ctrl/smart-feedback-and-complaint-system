@@ -85,28 +85,23 @@ List the key features of your project:
 
 #### Screenshots (Add at least 3)
 
+<img width="878" height="751" alt="image" src="https://github.com/user-attachments/assets/ecb29ff8-798b-45ed-8564-cab1cbf219d9" />
+<img width="791" height="647" alt="image" src="https://github.com/user-attachments/assets/923c9423-ff56-402e-91a2-294a958c293d" />
+<img width="797" height="758" alt="image" src="https://github.com/user-attachments/assets/d20cad3c-15e3-494b-afa9-895c1f52ca6a" />
 
-
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
-
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
 
 #### Diagrams
 
 **System Architecture:**
 
-![Architecture Diagram](docs/architecture.png)
-*Explain your system architecture - components, data flow, tech stack interaction*
+![Architecture Diagram]<img width="1280" height="853" alt="image" src="https://github.com/user-attachments/assets/6b09e5fb-0278-46ef-82fe-1703209e5747" />
+
 
 **Application Workflow:**
 
-![Workflow](docs/workflow.png)
-*Add caption explaining your workflow*
-
+![Workflow]
+<img width="853" height="1280" alt="image" src="https://github.com/user-attachments/assets/38dcd276-b513-48ae-80a7-bb7dc8fa2ed4" />
 ---
-
 ### For Hardware:
 
 #### Schematic & Circuit
