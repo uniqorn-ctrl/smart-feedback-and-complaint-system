@@ -60,7 +60,7 @@ List the key features of your project:
 
 #### Installation
 ```bash
-[Installation commands - e.g., npm install, pip install -r requirements.txt]
+not applicable
 ```
 
 #### Run
@@ -93,7 +93,8 @@ List the key features of your project:
 
 **System Architecture:**
 
-![Architecture Diagram]<img width="1280" height="853" alt="image" src="https://github.com/user-attachments/assets/6b09e5fb-0278-46ef-82fe-1703209e5747" />
+![Architecture Diagram]
+<img width="1280" height="853" alt="image" src="https://github.com/user-attachments/assets/6b09e5fb-0278-46ef-82fe-1703209e5747" />
 
 
 **Application Workflow:**
@@ -356,9 +357,7 @@ python script.py -v --format json data.json
 ## Project Demo
 
 ### Video
-[Add your demo video link here - YouTube, Google Drive, etc.]
-
-*Explain what the video demonstrates - key features, user flow, technical highlights*
+https://drive.google.com/file/d/1z8cpBbZcTo9J8Gov4_l6UZ1PvOherv-d/view?usp=drivesdk
 
 ### Additional Demos
 [Add any extra demo materials/links - Live site, APK download, online demo, etc.]
@@ -369,7 +368,7 @@ python script.py -v --format json data.json
 
 If you used AI tools during development, document them here for transparency:
 
-**Tool Used:** [e.g., GitHub Copilot, v0.dev, Cursor, ChatGPT, Claude]
+**Tool Used:**  GitHub Copilot,ChatGPT,VS code copilot
 
 **Purpose:** [What you used it for]
 - Example: "Generated boilerplate React components"
