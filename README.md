@@ -2,28 +2,30 @@
   <img src="./img.png" alt="Project Banner" width="100%">
 </p>
 
-# [Project Name] 🎯
+smart anonymous feedback and complaint system 🎯
 
 ## Basic Details
 
-### Team Name: [Name]
+### Team Name: Ignite Crew
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
+- Member 1: Delna rose MJ - jyothi Engineering college 
+- Member 2: Johanna johns - jyothi Engineering college 
 
 ### Hosted Project Link
-[mention your project hosted link here]
+https://smart-feedback-and-complaint-system.vercel.app/
+
 
 ### Project Description
-[2-3 lines about what your project does]
+Smart Feedback and Complaint System is a user-friendly web application designed to help users submit feedback and complaints easily and efficiently
 
 ### The Problem statement
-[What problem are you solving?]
+Many organizations handle complaints and feedback manually, which leads to delays, mismanagement, and lack of transparency.
+There is a need for a centralized digital system that allows users to submit, track, and resolve complaints efficiently and securely.
 
 ### The Solution
-[How are you solving it?]
 
+We solve this problem by developing a Smart Feedback and Complaint System, a centralized web platform where users can easily submit complaints and track their status online.
 ---
 
 ## Technical Details
@@ -31,10 +33,10 @@
 ### Technologies/Components Used
 
 **For Software:**
-- Languages used: [e.g., JavaScript, Python, Java]
-- Frameworks used: [e.g., React, Django, Spring Boot]
+- Languages used: JavaScript,CSS ,html
+- Frameworks used: flask
 - Libraries used: [e.g., axios, pandas, JUnit]
-- Tools used: [e.g., VS Code, Git, Docker]
+- Tools used:  VS Code, Git
 
 **For Hardware:**
 - Main components: [List main components]
@@ -46,10 +48,10 @@
 ## Features
 
 List the key features of your project:
-- Feature 1: [Description]
-- Feature 2: [Description]
-- Feature 3: [Description]
-- Feature 4: [Description]
+- Feature 1:User Authentication – Secure login and registration for users and admin.
+- Feature 2: Online Complaint Submission – Users can easily submit complaints or feedback
+- Feature 3: Complaint Status Tracking – Users can track whether their complaint is pending or resolved.
+- Feature 4: Admin Management Panel – Admin can view, manage, and update complaints efficiently.
 
 ---
 
@@ -83,8 +85,7 @@ List the key features of your project:
 
 #### Screenshots (Add at least 3)
 
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+
 
 ![Screenshot2](Add screenshot 2 here with proper name)
 *Add caption explaining what this shows*
