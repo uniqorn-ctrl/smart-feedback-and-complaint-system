@@ -1,11 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
-import os
 
-app = Flask(
-    __name__,
-    static_folder="static",
-    template_folder="templates"
-)
+app = Flask(__name__)
 
 # Temporary storage (for hackathon demo)
 complaints = []
@@ -38,14 +33,5 @@ def resolve(complaint_id):
     return redirect(url_for("home"))
 
 
-# Serve all other HTML pages from templates
-@app.route("/<path:filename>")
-def serve_page(filename):
-    if os.path.exists(os.path.join("templates", filename)):
-        return render_template(filename)
-    return "404 Not Found", 404
-
-
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=5000)
